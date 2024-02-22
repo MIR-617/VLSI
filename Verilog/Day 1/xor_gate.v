@@ -1,4 +1,4 @@
-// Code for xor_gate  level
+// Code for xor_gate  
 module xor_gate(
   input a,
   input b,
