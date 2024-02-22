@@ -1,4 +1,4 @@
-// Code for or_gate  level
+// Code for or_gate  
 module or_gate(
   input a,
   input b,
