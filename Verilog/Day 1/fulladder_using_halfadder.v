@@ -1,34 +1,16 @@
-// Code for fulladder using halfadder testbench 
-module fulladder_tb;
-reg A, B, Cin;
-wire sum, carry;
-
-  fulladder FA (.A(A),.B(B),.Cin(Cin),.sum(sum),.carry(carry));
- 
-initial begin //input values
-    A=0;B=0;Cin=0;
-    #10
-    A=0;B=0;Cin=1;
-    #10
-    A=0;B=1;Cin=0;
-    #10
-    A=0;B=1;Cin=1;
-    #10
-    A=1;B=0;Cin=0;
-    #10
-    A=1;B=0;Cin=1;
-    #10
-    A=1;B=1;Cin=0;
-    #10
-    A=1;B=1;Cin=1;
-    #10 
-$finish();
-end
-initial begin 
-//monitor and dump instructions
-  $monitor("%t A=%d B=%d Cin=%d sum=%d carry=%d",$time,A,B,Cin,sum,carry);
-  $dumpfile("fulladder.vcd");
-  $dumpvars(1,fulladder_tb);
-end
-            
+// code for fulladder using halfadder
+module fulladder(
+  input A,B,Cin,
+  output sum,carry
+);
+  wire X,Y,Z;
+  halfadder ha1(.A(A),.B(B),.sum(X),.carry(Y));
+  halfadder ha2(.A(X),.B(Cin),.sum(sum),.carry(Z));
+  or (carry,Y,Z);
+endmodule
+module halfadder(
+  input A,B,
+  output sum,carry);
+  xor(sum,A,B);
+  and(carry,A,B);
 endmodule
