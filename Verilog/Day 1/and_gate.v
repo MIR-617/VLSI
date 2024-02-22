@@ -1,3 +1,4 @@
+//code for and_gate
 module and_gate(
   input a,
   input b,
