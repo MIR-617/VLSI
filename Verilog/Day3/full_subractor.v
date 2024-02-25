@@ -1,4 +1,4 @@
-// Code your design here
+// Code your full_subractor
 module full_subractor(
   input a,b,c,
   output diff,borrow);
