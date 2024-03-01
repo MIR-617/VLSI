@@ -6,7 +6,7 @@ always @(*)
     if(num%2==0)
        $display("The number is a even number",num);
     else
-      $display("The number is not a even number",num);
+      $display("The number is a odd number",num);
    end 
 endmodule
        
