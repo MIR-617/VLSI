@@ -1,10 +1,10 @@
-module function_tb;
+module task_tb;
   integer  a;
-  function sum(input int x,y);
+  task sum(input int x,y);
     begin
       a=x+y;
     end
-  endfunction
+  endtask
   initial begin
     sum(9,7);
     $display("a=%d",a);
