@@ -1,5 +1,5 @@
 module example_function;
-  function int multi (input int x,y);
+  function  multi (input int x,y);
     begin
       multi=x*y;
     end
