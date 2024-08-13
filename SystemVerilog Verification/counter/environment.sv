@@ -1,23 +1,26 @@
-class driver;
-  transaction pkt;
-  mailbox mail;
+`include "transaction.sv"
+`include "generator.sv"
+`include "driver.sv"
+class environment;
   virtual operation vintf;
-  
+  generator gen;
+  driver driv;
+  mailbox mail;
   function new(virtual operation vintf,mailbox mail);
     this.vintf=vintf;
     this.mail=mail;
   endfunction
   
-  task drive;
-    repeat(8)
-      begin
-        
-        pkt=new();
-        mail.get(pkt);
-        vintf.clk=pkt.clk;
-        vintf.reset=pkt.reset;
-        pkt.out=vintf.out;
-        #5;
-      end
+  task memory;
+    mail=new();
+    gen=new(mail);
+    driv=new(vintf,mail);
   endtask
-endclass
+    
+    task run;
+      fork
+        gen.gene;
+        driv.drive;
+      join
+    endtask
+    endclass
